@@ -5,6 +5,7 @@ const { app, BrowserWindow } = require('electron')
 const path = require('path')
 const url = require('url')
 
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
@@ -25,11 +26,8 @@ if (process.platform === 'win32') {
 
 function createWindow() {
   // Create the browser window.
-  mainWindow = new BrowserWindow({
-    width: 1024,
-    height: 768,
-    show: false
-  })
+  mainWindow = new BrowserWindow({width: 800, height: 600, vibrancy: 'dark' ,transparent:true, frame: false})
+  mainWindow.setMinimumSize(560, 400)
 
   // and load the index.html of the app.
   let indexPath

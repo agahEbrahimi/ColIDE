@@ -1,0 +1,66 @@
+import React, { Component } from 'react';
+
+import '../css/Sidebar.css';
+import '../css/Topbar.css';
+import '../css/App.css';
+import '../css/Tabs.css';
+import '../css/Button.css';
+
+import Sidebar from "./Sidebar/Sidebar";
+import Topbar from './Topbar/Topbar';
+import CodePage from './EditorComp/CodePage';
+
+const { remote, ipcRenderer } = require('electron');
+
+class Layout extends Component {
+  constructor(props){
+    super(props);
+    this.state = {};
+    this.handleClose = this.handleClose.bind(this);
+    this.handleMax = this.handleMax.bind(this);
+    this.handleMin = this.handleMin.bind(this);
+
+    this.codePane = React.createRef();
+  }
+  
+  handleClose(){
+    remote.app.quit();
+  }
+  
+  handleMax(){
+    const currentWindow = remote.getCurrentWindow();
+    if(currentWindow.isMaximized()) {
+      currentWindow.unmaximize();
+    } 
+    else {
+      currentWindow.maximize();
+    }
+  }  
+
+  handleMin(){
+    remote.getCurrentWindow().minimize();
+  }
+
+  render() {
+    return (
+      <div>
+        <div className="Topbar">
+          <img id="close" onClick={this.handleClose} src={require("../img/close.svg")}/>
+          <img id="max" onClick={this.handleMax} src={require("../img/max.svg")}/>
+          <img id="min" onClick={this.handleMin} src={require("../img/min.svg")}/>
+          <Topbar />
+        </div>
+        <div id="MainPage">
+          <div className="SideBarPanel">
+              <Sidebar codePane={this.codePane}/>
+          </div>
+          <div id="RightAllign">
+            <CodePage ref={this.codePane}/>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default Layout;

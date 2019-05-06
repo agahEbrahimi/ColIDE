@@ -1,0 +1,78 @@
+ul, #parentUL {
+    list-style-type: none;
+    float: none;
+}
+
+ul{
+  list-style-position: inside;
+  margin-left: 0px;
+  padding-left: 20px;
+}
+
+li{
+  cursor: pointer;
+  margin-top: 6px;
+}
+
+#head{
+  margin-top: 6px;
+}
+
+#ulNoPad{
+  padding-left: 0px;
+  
+}
+
+#parentUL {
+    margin: 0;
+    padding: 0;
+    padding-top: 10px;
+}
+
+#Workspace{
+  font-size: 13px;
+  color: rgb(200, 200, 200);
+  font-family:  'Gill Sans';
+  font-weight: 10;
+  margin-left: 15px;
+}
+
+#white{
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 2px;
+
+}
+#black{
+  background-color: rgba(255, 255, 255, 0);
+}
+
+#unSelected{
+}
+#selected{
+  color: white; 
+}
+
+.nested {
+  display: none;
+
+}
+
+.active {
+  display: block;
+}
+
+
+
+.caret::before {
+  content: "\25B8";
+  color: white;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.caretDown::before {
+  content: "\25BE";
+  color: white;
+  display: inline-block;
+  margin-right: 6px;
+}

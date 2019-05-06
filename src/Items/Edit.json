@@ -1,0 +1,13 @@
+{
+    "Undo":"undo",
+    "Redo":"redo",
+    "Cut":"cut",
+    "Copy":"copy",
+    "Paste":"paste",
+    "Find":"find",
+    "Replace":"repl",
+    "Find (Files)":"findF",
+    "Replace (Files)":"replF",
+    "Line Comment":"lComm",
+    "Block Comment":"bComm"
+}
