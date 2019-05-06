@@ -20,8 +20,7 @@ class CodePage extends Component {
     }
 
     componentWillMount(){
-        console.log(localStorage.getItem("col:getTabs"));
-        if(localStorage.getItem("col:getTabs")!=null){
+        if(localStorage.getItem("col:getTabs")!==null && localStorage.getItem("col:getTabs").length>0){
             this.setState({openFiles: JSON.parse(localStorage.getItem("col:getTabs"))}, ()=>{
                 this.tabsRef.current.setActive(this.state.openFiles[0].name);
                 this.processTabs();
@@ -35,7 +34,7 @@ class CodePage extends Component {
 
     containsTab(name){
         for(var i=0; i<this.state.openFiles.length; i++){
-            if(this.state.openFiles[i].name==name){
+            if(this.state.openFiles[i].name===name){
                 return true;
             }
         }
@@ -44,17 +43,19 @@ class CodePage extends Component {
 
     addTab(name){
         var tempTabs = this.state.openFiles;
-        const self = this;
-        tempTabs.push({
-            id: name,
-            name: name
-        });
-        this.setState({openFiles:tempTabs}, ()=>{
-            this.tabsRef.current.setActive(name);
-            localStorage.setItem("col:getTabs", JSON.stringify(this.state.openFiles));
-            this.processTabs();
-            this.forceUpdate();
-        });
+        if(name!==undefined && !this.containsTab(name)){
+            console.log("asdasd");
+            tempTabs.push({
+                id: name,
+                name: name
+            });
+            this.setState({openFiles:tempTabs}, ()=>{
+                this.tabsRef.current.setActive(name);
+                localStorage.setItem("col:getTabs", JSON.stringify(this.state.openFiles));
+                this.processTabs();
+                this.forceUpdate();
+            });
+        }
     }
 
     processTabs(){

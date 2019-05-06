@@ -38,7 +38,7 @@ class OutsideClick extends Component {
                 {
 
                     Object.keys(this.state.object).map(function(keyName, keyIndex) {
-                        return(<DropDownButton id="" text={keyName}/>);
+                        return(<DropDownButton id="" key={keyName} text={keyName}/>);
                     })
                 }
             </div>

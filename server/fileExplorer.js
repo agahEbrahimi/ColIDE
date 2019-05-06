@@ -1,13 +1,17 @@
 var express = require('express'), router = express.Router();
 var fs = require('fs');
  
-  
-router.get("/getFolder", function(req, res){
-    const dir = "./server/";    
-   
-    res.send(JSON.stringify(walk(dir, "server")));
 
- 
+router.get("/getFolder", function(req, res){
+    const dir = "./server/";  //Have to make it dynamic  
+    res.send(JSON.stringify(walk(dir, "server")));
+});
+
+router.post("/getFileContent", function(req, res){
+    const dir = "./server/";  //Have to make it dynamic  
+
+    const body = req.body;
+    res.send(fs.readFileSync(dir+body.fileName));
 });
 
 const walk = (dir, dirName) => {

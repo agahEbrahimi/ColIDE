@@ -33,7 +33,7 @@ class Tree extends React.Component
         var headNodeArr = this.state.data;
         for(var i=0; i<headNodeArr.length; i++){
             var headNodeObj = headNodeArr[i];
-            finalArr.push(<Head depth={1} onHandleSelect={this.handleChange} children={headNodeObj["children"]} headName={headNodeObj["headName"]} />);
+            finalArr.push(<Head  key={i} depth={1} onHandleSelect={this.handleChange} children={headNodeObj["children"]} headName={headNodeObj["headName"]} />);
         }
         return finalArr;
     }
@@ -41,10 +41,12 @@ class Tree extends React.Component
     handleChange(selectedF){
         const self = this;
         this.setState({selected: selectedF}, ()=>{
-            var bool = self.props.codePane.current.containsTab(self.state.selected);
+            const codePane = self.props.codePane.current;
+            var bool = codePane.containsTab(self.state.selected);
             if(!bool){
-                self.props.codePane.current.addTab(self.state.selected);
+                codePane.addTab(self.state.selected);
             }
+            codePane.tabsRef.current.setActive(self.state.selected);
         });
     }
 

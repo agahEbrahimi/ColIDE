@@ -52,7 +52,7 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify('development')
     }),
     new MonacoWebpackPlugin({
-      languages: ['json', 'javascript', 'typescript', 'java']
+      language: 'javascript'
     }),
     new webpack.HotModuleReplacementPlugin()
   ],

@@ -21,12 +21,28 @@ class Monaco extends React.Component {
     this.changeUpdate = this.changeUpdate.bind(this);
     this.onContentChange = this.onContentChange.bind(this);
     this.objectComparison = this.objectComparison.bind(this);
-
+    this.getFileContent = this.getFileContent.bind(this);
     this.myref = React.createRef();
   }
   componentDidMount(){
+    this.getFileContent();
     this.getChanges();
     this.onContentChange();
+  }
+
+  getFileContent(){
+    fetch('http://localhost:4000/file/getFileContent', {
+        method: 'POST',
+        body: JSON.stringify({
+          fileName: this.state.name,
+        }),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+      }).then(results => results.text()).then(data => {
+        localStorage.setItem(this.props.name, data);
+        this.setState({code:data});
+      });
   }
 
   editorDidMount(editor, monaco) {
