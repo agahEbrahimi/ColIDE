@@ -43,9 +43,8 @@ class Monaco extends React.Component {
             'Content-Type': 'application/json',
         }
       }).then(results => results.text()).then(data => {
-        console.log(data);
-        //localStorage.setItem(this.props.name, data);
-        //this.setState({code:data});
+        localStorage.setItem(this.props.name, data);
+        this.setState({code:data});
       });
   }
 

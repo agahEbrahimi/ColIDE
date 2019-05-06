@@ -14,11 +14,11 @@
 }
 
 #RightAllign{
-    height: 100vh;
+    height: 70vh;
     margin-left:270px;
     width: calc(100% - 270px);
 }
 .moncaoEditor{
-    height: 100vh;
+    height: 70vh;
     width: 100%;
 }

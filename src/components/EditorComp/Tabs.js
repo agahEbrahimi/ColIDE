@@ -78,21 +78,24 @@ class Tabs extends Component {
   render() {
     return (
       <div className="tabs">
-        <ol className="tab-list">
-          {this.props.children.map((child) => {
-            const { label, id } = child.props;
-            return (
-              <Tab
-                activeTab={this.state.activeTab}
-                key={label}
-                id={id}
-                label={label}
-                onClick={this.onClickTabItem}
-                onClose={this.closeTabHandler}
-              />
-            );
-          })}
-        </ol>
+        <div id="scrollable"> 
+        {/*Fix Scrollable without messing up layout*/}
+          <ol className="tab-list">
+            {this.props.children.map((child) => {
+              const { label, id } = child.props;
+              return (
+                <Tab
+                  activeTab={this.state.activeTab}
+                  key={label}
+                  id={id}
+                  label={label}
+                  onClick={this.onClickTabItem}
+                  onClose={this.closeTabHandler}
+                />
+              );
+            })}
+          </ol>
+        </div>
         <div className="tab-content">
           {
             this.props.children.map((child) => {

@@ -5,10 +5,12 @@ import '../css/Topbar.css';
 import '../css/App.css';
 import '../css/Tabs.css';
 import '../css/Button.css';
+import '../css/CodeUtil.css';
 
 import Sidebar from "./Sidebar/Sidebar";
 import Topbar from './Topbar/Topbar';
 import CodePage from './EditorComp/CodePage';
+import CodeUtil from './CodeUtil/CodeUtil';
 
 const { remote, ipcRenderer } = require('electron');
 
@@ -57,6 +59,7 @@ class Layout extends Component {
           </div>
           <div id="RightAllign">
             <CodePage ref={this.codePane}/>
+            <CodeUtil />
           </div>
         </div>
       </div>

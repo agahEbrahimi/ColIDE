@@ -91,11 +91,13 @@ class CodePage extends Component {
 
     render() {
         return (
-            <Tabs ref={this.tabsRef} contentPanes={this.state.contentPanes} files={this.state.openFiles} closeHandler={this.closeTabHandler}>
-              {
-                  this.state.tabs
-              }
-            </Tabs>
+            <div id="codePaneDiv">
+                <Tabs ref={this.tabsRef} contentPanes={this.state.contentPanes} files={this.state.openFiles} closeHandler={this.closeTabHandler}>
+                {
+                    this.state.tabs
+                }
+                </Tabs>
+            </div>
         );
     }
 }

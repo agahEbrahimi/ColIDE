@@ -57,6 +57,7 @@
     "ipfs": "^0.30.1",
     "ipfs-api": "^26.1.2",
     "ipfs-pubsub-room": "^1.2.1",
+    "javascript-terminal": "^1.0.2",
     "libp2p": "^0.20.4",
     "libp2p-mdns": "^0.11.0",
     "libp2p-mplex": "^0.7.0",
@@ -75,6 +76,7 @@
     "react-dropzone": "^10.1.4",
     "react-monaco-editor": "^0.25.1",
     "react-tabs": "^3.0.0",
+    "react-terminal-component": "^1.4.0",
     "walk": "^2.3.14",
     "ws": "^6.2.1"
   },
