@@ -9,6 +9,7 @@ class Monaco extends React.Component {
 
     this.state = {
       name: this.props.name,
+      dir: this.props.dir,
       code: localStorage.getItem(this.props.name),
       eventRange: null, 
       eventString: "",
@@ -31,17 +32,20 @@ class Monaco extends React.Component {
   }
 
   getFileContent(){
+    console.log(this.state.dir);
     fetch('http://localhost:4000/file/getFileContent', {
         method: 'POST',
         body: JSON.stringify({
           fileName: this.state.name,
+          dir: this.state.dir
         }),
         headers: {
             'Content-Type': 'application/json',
         }
       }).then(results => results.text()).then(data => {
-        localStorage.setItem(this.props.name, data);
-        this.setState({code:data});
+        console.log(data);
+        //localStorage.setItem(this.props.name, data);
+        //this.setState({code:data});
       });
   }
 

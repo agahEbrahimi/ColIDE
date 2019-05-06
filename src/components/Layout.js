@@ -21,6 +21,7 @@ class Layout extends Component {
     this.handleMin = this.handleMin.bind(this);
 
     this.codePane = React.createRef();
+    this.sideBar = React.createRef();
   }
   
   handleClose(){
@@ -48,11 +49,11 @@ class Layout extends Component {
           <img id="close" onClick={this.handleClose} src={require("../img/close.svg")}/>
           <img id="max" onClick={this.handleMax} src={require("../img/max.svg")}/>
           <img id="min" onClick={this.handleMin} src={require("../img/min.svg")}/>
-          <Topbar />
+          <Topbar sideBar={this.sideBar}/>
         </div>
         <div id="MainPage">
           <div className="SideBarPanel">
-              <Sidebar codePane={this.codePane}/>
+              <Sidebar ref={this.sideBar} codePane={this.codePane}/>
           </div>
           <div id="RightAllign">
             <CodePage ref={this.codePane}/>

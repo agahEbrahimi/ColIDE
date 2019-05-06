@@ -8,20 +8,32 @@ var viewData = require('../../Items/View.json');
 var windowData = require('../../Items/Window.json'); 
 var helpData = require('../../Items/Help.json'); 
 
+
+
 class Topbar extends Component {
 
     constructor(props){
-        super(props);      
+        super(props);   
+        this.clickEvent = this.clickEvent.bind(this); 
     }  
+
+    clickEvent(clickedButton, extOpt){
+        const treeRef = this.props.sideBar.current.controllerRef.current.treeRef.current;
+        switch(clickedButton){
+            case "Open Directory...":
+                treeRef.updateTree(extOpt[0].path, extOpt[0].name);
+        }
+
+    }
 
     render() {
         return (
             <div id="leftMargin">
-                <Button obj={fileData} text="File"/>
-                <Button obj={editData} text="Edit"/>
-                <Button obj={viewData} text="View"/>
-                <Button obj={windowData} text="Windows"/>
-                <Button obj={helpData} text="Help"/>
+                <Button submitUpwards={this.clickEvent} obj={fileData} text="File"/>
+                <Button submitUpwards={this.clickEvent} obj={editData} text="Edit"/>
+                <Button submitUpwards={this.clickEvent} obj={viewData} text="View"/>
+                <Button submitUpwards={this.clickEvent} obj={windowData} text="Windows"/>
+                <Button submitUpwards={this.clickEvent} obj={helpData} text="Help"/>
             </div> 
         );
     }

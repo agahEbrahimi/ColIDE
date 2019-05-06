@@ -1,7 +1,11 @@
 {
-    "New File" : "nFil",
+    "New File" : "nF",
     "New Window" : "nWin",
-    "Open..." : "open",
+    "Open File..." : "open",
+    "Open Directory..." : {
+        "hasFile":true,
+        "hasShortcut":true
+    },
     "Open Workspace..." : "openwrkspcs",
     "Save" : "save",
     "Save As": "saveAs",

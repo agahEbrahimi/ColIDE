@@ -26,10 +26,10 @@ class Head extends React.Component
         for(var i=0; i<object.length; i++){
             var nodeObj = object[i];
            if(object[i]["type"]=="node"){
-                finalArr.push(<Node key={i} depth={this.state.depth+1} name={nodeObj["name"]} onHandleSelect={this.props.onHandleSelect}/>)
+                finalArr.push(<Node dir={this.props.dir+"/"+this.state.headName} key={i} depth={this.state.depth+1} name={nodeObj["name"]} onHandleSelect={this.props.onHandleSelect}/>)
            }
            else if(object[i]["type"]=="head"){
-                finalArr.push(<Head key={i} depth={this.state.depth+1} headName={nodeObj["headName"]} children={nodeObj["children"]} onHandleSelect={this.props.onHandleSelect}/>)
+                finalArr.push(<Head dir={this.props.dir+"/"+this.state.headName} key={i} depth={this.state.depth+1} headName={nodeObj["headName"]} children={nodeObj["children"]} onHandleSelect={this.props.onHandleSelect}/>)
            }
         }
         return finalArr;

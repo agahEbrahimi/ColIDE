@@ -13,19 +13,69 @@ class Tree extends React.Component
     constructor(props){
         super(props);
         this.state = {
-            selected: "",
-            data: []
+            selected: {},
+            data: [],
+            dirs: [], 
+            unrendered: []
         };
         this.process = this.process.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.instantiateTree = this.instantiateTree.bind(this);
+        this.updateTree = this.updateTree.bind(this);
+        this.containsDir = this.containsDir.bind(this);
     }
 
     componentDidMount(){
-        fetch("http://localhost:4000/file/getFolder").then(res => res.text()).then(data => {
-            var roots = this.state.data;
-            roots.push(JSON.parse(data));
-            this.setState({data: roots}, ()=>this.process());
-        });
+        this.instantiateTree();
+    }
+
+    updateTree(dir, dirName){
+        console.log(!this.containsDir(dir, dirName));
+        if(!this.containsDir(dir, dirName)){
+            var directoryObj = {loc:dir, name:dirName};
+            var dirsObj = [];
+            dirsObj.push(directoryObj);
+            this.setState({unrendered: dirsObj}, ()=>{
+                this.instantiateTree();
+            });
+        }
+    }
+
+    containsDir(dir, dirName){
+        for(var i=0; i<this.state.dirs.length; i++){
+            if(this.state.dirs[i].loc===dir && this.state.dirs[i].name===dirName){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    instantiateTree(){
+        const self = this;
+        for(var i=0; i<this.state.unrendered.length; i++){
+            const run = (i)=>{
+                fetch('http://localhost:4000/file/getFolder', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        dir: this.state.unrendered[i].loc,
+                        dirName: this.state.unrendered[i].name
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }).then(results => results.text()).then(data => {
+                    var modData = JSON.parse(data);
+                    modData["dir"] = self.state.unrendered[i].loc.substring(0,self.state.unrendered[i].loc.lastIndexOf("/"));
+                   
+                    var roots = [];
+                    roots.push(modData);
+
+                    
+                    this.setState({data: roots, unrendered:[]}, ()=>this.process());
+                });
+            };
+            run(i);
+        }
     }
 
     process(){
@@ -33,7 +83,7 @@ class Tree extends React.Component
         var headNodeArr = this.state.data;
         for(var i=0; i<headNodeArr.length; i++){
             var headNodeObj = headNodeArr[i];
-            finalArr.push(<Head  key={i} depth={1} onHandleSelect={this.handleChange} children={headNodeObj["children"]} headName={headNodeObj["headName"]} />);
+            finalArr.push(<Head dir={headNodeObj["dir"]} key={i} depth={1} onHandleSelect={this.handleChange} children={headNodeObj["children"]} headName={headNodeObj["headName"]} />);
         }
         return finalArr;
     }
@@ -46,7 +96,7 @@ class Tree extends React.Component
             if(!bool){
                 codePane.addTab(self.state.selected);
             }
-            codePane.tabsRef.current.setActive(self.state.selected);
+            codePane.tabsRef.current.setActive(self.state.selected["name"]); //update the tabs so you can open the same filename from different directories
         });
     }
 

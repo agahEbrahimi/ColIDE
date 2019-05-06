@@ -7,7 +7,7 @@ class Page extends Component {
     render() {
         return (
             <div id="fullHeight">
-                <Monaco name={this.props.label} />
+                <Monaco dir={this.props.dir} name={this.props.label} />
             </div> 
         );
     }

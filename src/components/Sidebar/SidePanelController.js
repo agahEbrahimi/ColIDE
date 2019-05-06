@@ -10,12 +10,13 @@ class SidePanelController extends React.Component
             selected: "Workspace",
         };
         this.optionChecker = this.optionChecker.bind(this);
-
+        this.treeRef = React.createRef();
+        this.Tree = <Tree ref={this.treeRef} codePane={this.props.codePane}/>;
     }
     optionChecker() {
         switch(this.state.selected) {
           case 'Workspace':
-            return <Tree codePane={this.props.codePane}/>;
+            return this.Tree;
           case 'Git':
             return <div>Git</div>;
           default:

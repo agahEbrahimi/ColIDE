@@ -23,7 +23,11 @@ class Node extends React.Component
         else{
             this.setState({color: "unSelected"});
         }
-        this.props.onHandleSelect(this.state.name);
+        const nodeObj = {
+            "name": this.state.name,
+            "dir": this.props.dir+"/"
+        }
+        this.props.onHandleSelect(nodeObj);
     }
     render(){
         this.state.name = this.props.name;

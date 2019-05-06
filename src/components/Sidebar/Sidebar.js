@@ -12,6 +12,7 @@ class Sidebar extends React.Component
             selected: "Workspace"
         };
         this.handleChange = this.handleChange.bind(this);
+        this.controllerRef = React.createRef();
     }
     handleChange(selectedOption) {
         this.setState({selected: selectedOption});
@@ -24,7 +25,7 @@ class Sidebar extends React.Component
                 </div>
 
                 <div id="optionPanel">
-                    <SidePanelController codePane={this.props.codePane} selected={this.state.selected}/>
+                    <SidePanelController ref={this.controllerRef} codePane={this.props.codePane} selected={this.state.selected}/>
                 </div>
             </div>
         );

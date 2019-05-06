@@ -72,6 +72,7 @@
     "pubsub-swarm": "^1.0.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "react-dropzone": "^10.1.4",
     "react-monaco-editor": "^0.25.1",
     "react-tabs": "^3.0.0",
     "walk": "^2.3.14",

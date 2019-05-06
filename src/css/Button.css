@@ -95,3 +95,8 @@
 #hidden{
     opacity: 0;
 }
+
+#input{
+    visibility: hidden;
+    width: 0px;
+}

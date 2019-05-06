@@ -20,7 +20,8 @@ class CodePage extends Component {
     }
 
     componentWillMount(){
-        if(localStorage.getItem("col:getTabs")!==null && localStorage.getItem("col:getTabs").length>0){
+        localStorage.setItem("col:getTabs","{}");
+        if(localStorage.getItem("col:getTabs")!==null && JSON.parse(localStorage.getItem("col:getTabs")).length>0){
             this.setState({openFiles: JSON.parse(localStorage.getItem("col:getTabs"))}, ()=>{
                 this.tabsRef.current.setActive(this.state.openFiles[0].name);
                 this.processTabs();
@@ -32,25 +33,25 @@ class CodePage extends Component {
         }
     }
 
-    containsTab(name){
+    containsTab(obj){
         for(var i=0; i<this.state.openFiles.length; i++){
-            if(this.state.openFiles[i].name===name){
+            if(this.state.openFiles[i].name===obj["name"] && this.state.openFiles[i].dir===obj["dir"]){
                 return true;
             }
         }
         return false;
     }
 
-    addTab(name){
+    addTab(obj){
         var tempTabs = this.state.openFiles;
-        if(name!==undefined && !this.containsTab(name)){
-            console.log("asdasd");
+        if(name!==undefined && !this.containsTab(obj)){
             tempTabs.push({
-                id: name,
-                name: name
+                id: obj["dir"]+obj["name"],
+                name: obj["name"],
+                dir: obj["dir"]
             });
             this.setState({openFiles:tempTabs}, ()=>{
-                this.tabsRef.current.setActive(name);
+                this.tabsRef.current.setActive(obj["name"]);
                 localStorage.setItem("col:getTabs", JSON.stringify(this.state.openFiles));
                 this.processTabs();
                 this.forceUpdate();
@@ -66,7 +67,7 @@ class CodePage extends Component {
                 label={this.state.openFiles[i].name} 
                 key={this.state.openFiles[i].id} 
                 id={this.state.openFiles[i].id}>
-                    <Page label={this.state.openFiles[i].name}/>
+                    <Page dir={this.state.openFiles[i]["dir"]} label={this.state.openFiles[i]["name"]}/>
                 </div>)
             ;    
         }

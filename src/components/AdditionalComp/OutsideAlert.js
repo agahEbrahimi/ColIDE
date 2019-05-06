@@ -33,12 +33,12 @@ class OutsideClick extends Component {
     }
 
     DropDownRender(){
+        const self = this;
         return (
             <div className={this.state.menuVisibility} id="dropDownMenu">
                 {
-
                     Object.keys(this.state.object).map(function(keyName, keyIndex) {
-                        return(<DropDownButton id="" key={keyName} text={keyName}/>);
+                        return(<DropDownButton submitUpwards={self.props.submitUpwards} id="" key={keyName} text={keyName} properties={self.state.object[keyName]}/>);
                     })
                 }
             </div>

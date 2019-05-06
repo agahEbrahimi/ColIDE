@@ -42,7 +42,7 @@ class Button extends Component {
         return (
             <div ref={this.currRef} id="left">
                 <a id={this.state.style} className="base" onMouseUp={this.mouseUp} onMouseDown={this.mouseDown} onMouseEnter={this.enterHandler} onMouseLeave={this.leaveHandler}>{this.state.text}</a>
-                <OutsideClick obj={this.props.obj} ref={this.dropDownRef} dropDownItems={this.state.dropDownItems} parentRef={this.currRef}/>
+                <OutsideClick submitUpwards={this.props.submitUpwards} obj={this.props.obj} ref={this.dropDownRef} dropDownItems={this.state.dropDownItems} parentRef={this.currRef}/>
             </div>
         );
     }
