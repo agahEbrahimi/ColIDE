@@ -10,8 +10,6 @@ class CodeUtil extends Component {
     render() {
         return (
             <div id="codeUtil">
-                <Console />
-                <Terminal />
             </div> 
         );
     }

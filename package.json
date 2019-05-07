@@ -1,21 +1,16 @@
 {
-  "name": "electron-react-webpack-boilerplate",
-  "version": "1.3.0",
-  "description": "Minimal Electron, React, PostCSS and Webpack boilerplate to help you get started with building your next app.",
+  "name": "colide",
+  "version": "0.0.1",
+  "description": "Simple IDE with Colaborative Editing, autosyn, and virtual code compilation",
   "license": "MIT",
-  "private": false,
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/alexdevero/electron-react-webpack-boilerplate.git"
-  },
-  "homepage": "",
+  "private": true,
   "bugs": {
-    "url": "https://github.com/alexdevero/electron-react-webpack-boilerplate.git/issues"
+    "url": ""
   },
   "author": {
-    "name": "Alex Devero",
-    "email": "deveroalex@gmail.com",
-    "url": "https://github.com/alexdevero"
+    "name": "Agah Ebrahimi",
+    "email": "agahebr@gmail.com",
+    "url": "https://github.com/agahebr"
   },
   "keywords": [
     "app",
@@ -47,23 +42,15 @@
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.4.0",
     "@babel/preset-env": "^7.4.3",
+    "antd": "^3.17.0",
     "clean-webpack-plugin": "^2.0.1",
     "concurrently": "^4.1.0",
     "cors": "^2.8.5",
-    "discovery-swarm": "^5.1.1",
     "electron": "^3.0.0",
     "express": "^4.16.4",
-    "file-api": "^0.10.4",
     "ipfs": "^0.30.1",
     "ipfs-api": "^26.1.2",
     "ipfs-pubsub-room": "^1.2.1",
-    "javascript-terminal": "^1.0.2",
-    "libp2p": "^0.20.4",
-    "libp2p-mdns": "^0.11.0",
-    "libp2p-mplex": "^0.7.0",
-    "libp2p-secio": "^0.10.0",
-    "libp2p-switch": "^0.40.6",
-    "libp2p-tcp": "^0.12.0",
     "mime": "^2.3.1",
     "monaco-editor": "^0.16.2",
     "monaco-editor-webpack-plugin": "^1.5.0",
@@ -73,12 +60,8 @@
     "pubsub-swarm": "^1.0.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-    "react-dropzone": "^10.1.4",
     "react-monaco-editor": "^0.25.1",
-    "react-tabs": "^3.0.0",
-    "react-terminal-component": "^1.4.0",
-    "walk": "^2.3.14",
-    "ws": "^6.2.1"
+    "walk": "^2.3.14"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",

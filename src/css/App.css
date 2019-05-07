@@ -14,7 +14,7 @@
 }
 
 #RightAllign{
-    height: 70vh;
+    height: calc(100vh - 200px);
     margin-left:270px;
     width: calc(100% - 270px);
 }

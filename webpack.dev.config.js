@@ -9,6 +9,7 @@ const defaultPath = path.resolve(__dirname, 'src')
 const serverPath = path.resolve(__dirname, 'server')
 
 const monacoPath = path.resolve(__dirname, './node_modules/monaco-editor');
+const antPath = path.resolve(__dirname, './node_modules/antd');
 
 module.exports = {
   module: {
@@ -16,7 +17,12 @@ module.exports = {
       {
         test: /\.css$/,
         include: monacoPath,
-        use: ['style-loader', 'css-loader'],
+        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }, { loader: 'postcss-loader' }],
+      },
+      {
+        test: /\.css$/,
+        include: antPath,
+        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }, { loader: 'postcss-loader' }],
       },
       {
         test: /\.css$/,
@@ -52,7 +58,8 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify('development')
     }),
     new MonacoWebpackPlugin({
-      language: 'javascript'
+      languages: ['javascript', 'java', 'json'],
+      features: [['accessibilityHelp', 'bracketMatching', 'caretOperations', 'clipboard', 'codeAction', 'codelens', 'colorDetector', 'comment', 'contextmenu', 'coreCommands', 'cursorUndo', 'dnd', 'find', 'folding', 'fontZoom', 'format', 'goToDefinitionCommands', 'goToDefinitionMouse', 'gotoError', 'gotoLine', 'hover', 'inPlaceReplace', 'inspectTokens', 'iPadShowKeyboard', 'linesOperations', 'links', 'multicursor', 'parameterHints', 'quickCommand', 'quickOutline', 'referenceSearch', 'rename', 'smartSelect', 'snippets', 'suggest', 'toggleHighContrast', 'toggleTabFocusMode', 'transpose', 'wordHighlighter', 'wordOperations', 'wordPartOperations']]
     }),
     new webpack.HotModuleReplacementPlugin()
   ],
